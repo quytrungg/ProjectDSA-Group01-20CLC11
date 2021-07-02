@@ -9,10 +9,10 @@
 #include <ctype.h> // to differentiate between number and char
 #include <string> // because... reasons
 
-void algorithmMode(int argc, char* argv[], int a[]);
+void algorithmMode(int argc, char* argv[], int*& a);
 
 void swap_element(int a, int b);
-void time_count(char* sortType, char* outputPara, int* a, int n, int extra = 0);
+void time_count(char* sortType, char* outputPara, int* a, int n);
 
 void bubble_sort(int* a, int n);
 void bubble_sort_compare(int* a, int n, int& count_compare);

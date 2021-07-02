@@ -8,7 +8,7 @@ double selectionSortRuntime(int* a, int n)
 	t = clock();
 	selection_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC)*1000;
+	return (double(t) / CLOCKS_PER_SEC)*1000;
 }
 
 double insertionSortRuntime(int* a, int n)
@@ -17,7 +17,7 @@ double insertionSortRuntime(int* a, int n)
 	t = clock();
 	insertion_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double bubbleSortRuntime(int* a, int n)
@@ -26,7 +26,7 @@ double bubbleSortRuntime(int* a, int n)
 	t = clock();
 	bubble_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double shakerSortRuntime(int* a, int n)
@@ -35,7 +35,7 @@ double shakerSortRuntime(int* a, int n)
 	t = clock();
 	shaker_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double shellSortRuntime(int* a, int n)
@@ -44,7 +44,7 @@ double shellSortRuntime(int* a, int n)
 	t = clock();
 	shell_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double heapSortRuntime(int* a, int n)
@@ -53,7 +53,7 @@ double heapSortRuntime(int* a, int n)
 	t = clock();
 	heap_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double mergeSortRuntime(int* a, int left, int right)
@@ -62,7 +62,7 @@ double mergeSortRuntime(int* a, int left, int right)
 	t = clock();
 	merge_sort(a, left, right);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double quickSortRuntime(int* a, int left, int right)
@@ -71,7 +71,7 @@ double quickSortRuntime(int* a, int left, int right)
 	t = clock();
 	quick_sort(a, left, right);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double countingSortRuntime(int* a, int n)
@@ -80,7 +80,7 @@ double countingSortRuntime(int* a, int n)
 	t = clock();
 	counting_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double radixSortRuntime(int* a, int n)
@@ -89,7 +89,7 @@ double radixSortRuntime(int* a, int n)
 	t = clock();
 	radix_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
 double flashSortRuntime(int* a, int n)
@@ -98,10 +98,10 @@ double flashSortRuntime(int* a, int n)
 	t = clock();
 	flash_sort(a, n);
 	t = clock() - t;
-	return (float(t) / CLOCKS_PER_SEC) * 1000;
+	return (double(t) / CLOCKS_PER_SEC) * 1000;
 }
 
-double runTime(char* sortType, int* a, int n, int extra = 0) //main runtime calculator (-1 = error) n = left, extra = right
+double runTime(char* sortType, int* a, int n) //main runtime calculator (-1 = error) n = left, extra = right
 {
 	int type = 0;
 	if (sortType == "selection-sort") type = 1;
@@ -123,8 +123,8 @@ double runTime(char* sortType, int* a, int n, int extra = 0) //main runtime calc
 	case 4: return shakerSortRuntime(a, n);
 	case 5: return shellSortRuntime(a, n);
 	case 6: return heapSortRuntime(a, n);
-	case 7: return mergeSortRuntime(a, extra, n-1);
-	case 8: return quickSortRuntime(a, extra, n-1);
+	case 7: return mergeSortRuntime(a, 0, n-1);
+	case 8: return quickSortRuntime(a, 0, n-1);
 	case 9: return countingSortRuntime(a, n);
 	case 10: return radixSortRuntime(a, n);
 	case 11: return flashSortRuntime(a, n);
@@ -137,7 +137,7 @@ double runTime(char* sortType, int* a, int n, int extra = 0) //main runtime calc
 
 ///////////////// Comparison Count ////////////////
 
-int compCount(char* sortType, int* a, int n, int extra = 0) //main runtime calculator (-1 = error) n = left, extra = right
+int compCount(char* sortType, int* a, int n) //main runtime calculator (-1 = error) n = left, extra = right
 {
 	int count_compare = 0, type = 0;
 
@@ -160,8 +160,8 @@ int compCount(char* sortType, int* a, int n, int extra = 0) //main runtime calcu
 	case 4: shaker_sort_compare(a, n, count_compare); return count_compare;
 	case 5: shell_sort_comparision(a, n, count_compare); return count_compare;
 	case 6: heap_sort_compare(a, n, count_compare); return count_compare;
-	case 7: merge_sort_compare(a, extra, n-1, count_compare); return count_compare;
-	case 8: quick_sort_compare(a, extra,n-1, count_compare); return count_compare;
+	case 7: merge_sort_compare(a, 0, n-1, count_compare); return count_compare;
+	case 8: quick_sort_compare(a, 0,n-1, count_compare); return count_compare;
 	case 9: counting_sort_compare(a, n, count_compare); return count_compare;
 	case 10: radix_sort_compare(a, n, count_compare); return count_compare;
 	case 11: flash_sort_compare(a, n, count_compare); return count_compare;
@@ -176,7 +176,7 @@ int compCount(char* sortType, int* a, int n, int extra = 0) //main runtime calcu
 * The time of the sorting algorithm: 000ms.
 * The comparision count of the sorting algorithm: 000 comparision(s).*/
 
-void time_count(char* sortType, char* outputPara, int* a, int n, int extra = 0) //n = left, extra = right
+void time_count(char* sortType, char* outputPara, int* a, int n) //n = left, extra = right
 {
 	double time = runTime(sortType, a, n);
 	int comp = compCount(sortType, a, n);
@@ -208,7 +208,7 @@ void time_count(char* sortType, char* outputPara, int* a, int n, int extra = 0) 
 	return;
 } 
 
-void algorithmMode(int argc, char* argv[], int a[])
+void algorithmMode(int argc, char* argv[], int*& a)
 {
 	std::cout << "ALGORITHM MODE\n";
 	std::cout << "Algorithm: " << argv[2] << std::endl;
@@ -253,6 +253,6 @@ void algorithmMode(int argc, char* argv[], int a[])
 		else if (argv[4] == "-sorted") inOr = 1;
 		else if (argv[4] == "-rev") inOr = 2;
 		GenerateData(a, std::stoi(argv[3]), inOr);
-		time_count(argv[2], argv[5], a, std::stoi(argv[3]);
+		time_count(argv[2], argv[5], a, std::stoi(argv[3]));
 	}
 }

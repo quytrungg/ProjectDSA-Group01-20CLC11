@@ -1,7 +1,7 @@
 #include "header.h"
 
 int main(int argc, char* argv[]) {
-	int* a;
+	int* a = nullptr;
 	if (argv[1] == "-a")
 	{
 		algorithmMode(argc, argv, a);
