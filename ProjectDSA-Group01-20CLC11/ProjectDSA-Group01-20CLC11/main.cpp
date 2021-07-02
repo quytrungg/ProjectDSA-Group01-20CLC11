@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[]) {
 	int* a = nullptr;
-	if (argv[1] == "-a")
+	if (argv[1][1] == 'a')
 	{
 		algorithmMode(argc, argv, a);
 	}

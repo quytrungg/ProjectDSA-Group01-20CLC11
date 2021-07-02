@@ -104,17 +104,17 @@ double flashSortRuntime(int* a, int n)
 double runTime(char* sortType, int* a, int n) //main runtime calculator (-1 = error) n = left, extra = right
 {
 	int type = 0;
-	if (sortType == "selection-sort") type = 1;
-	else if (sortType == "insertion-sort") type = 2;
-	else if (sortType == "bubble-sort") type = 3;
-	else if (sortType == "shaker-sort") type = 4;
-	else if (sortType == "shell-sort") type = 5;
-	else if (sortType == "heap-sort") type = 6;
-	else if (sortType == "merge-sort") type = 7;
-	else if (sortType == "quick-sort") type = 8;
-	else if (sortType == "counting-sort") type = 9;
-	else if (sortType == "radix-sort") type = 10;
-	else if (sortType == "flash-sort") type = 11;
+	if (strcmp(sortType, "selection-sort") == 0) type = 1;
+	else if (strcmp(sortType, "insertion-sort") == 0) type = 2;
+	else if (strcmp(sortType, "bubble-sort") == 0) type = 3;
+	else if (strcmp(sortType, "shaker-sort") == 0) type = 4;
+	else if (strcmp(sortType, "shell-sort") == 0) type = 5;
+	else if (strcmp(sortType, "heap-sort") == 0) type = 6;
+	else if (strcmp(sortType, "merge-sort") == 0) type = 7;
+	else if (strcmp(sortType, "quick-sort") == 0) type = 8;
+	else if (strcmp(sortType, "counting-sort") == 0) type = 9;
+	else if (strcmp(sortType, "radix-sort") == 0) type = 10;
+	else if (strcmp(sortType, "flash-sort") == 0) type = 11;
 	switch (type)
 	{
 	case 1: return selectionSortRuntime(a, n);
@@ -141,17 +141,17 @@ int compCount(char* sortType, int* a, int n) //main runtime calculator (-1 = err
 {
 	int count_compare = 0, type = 0;
 
-	if (sortType == "selection-sort") type = 1;
-	else if (sortType == "insertion-sort") type = 2;
-	else if (sortType == "bubble-sort") type = 3;
-	else if (sortType == "shaker-sort") type = 4;
-	else if (sortType == "shell-sort") type = 5;
-	else if (sortType == "heap-sort") type = 6;
-	else if (sortType == "merge-sort") type = 7;
-	else if (sortType == "quick-sort") type = 8;
-	else if (sortType == "counting-sort") type = 9;
-	else if (sortType == "radix-sort") type = 10;
-	else if (sortType == "flash-sort") type = 11;
+	if (strcmp(sortType, "selection-sort") == 0) type = 1;
+	else if (strcmp(sortType, "insertion-sort") == 0) type = 2;
+	else if (strcmp(sortType, "bubble-sort") == 0) type = 3;
+	else if (strcmp(sortType, "shaker-sort") == 0) type = 4;
+	else if (strcmp(sortType, "shell-sort") == 0) type = 5;
+	else if (strcmp(sortType, "heap-sort") == 0) type = 6;
+	else if (strcmp(sortType, "merge-sort") == 0) type = 7;
+	else if (strcmp(sortType, "quick-sort") == 0) type = 8;
+	else if (strcmp(sortType, "counting-sort") == 0) type = 9;
+	else if (strcmp(sortType, "radix-sort") == 0) type = 10;
+	else if (strcmp(sortType, "flash-sort") == 0) type = 11;
 	switch (type)
 	{
 	case 1: selection_sort_compare(a, n, count_compare); return count_compare;
@@ -181,19 +181,19 @@ void time_count(char* sortType, char* outputPara, int* a, int n) //n = left, ext
 	double time = runTime(sortType, a, n);
 	int comp = compCount(sortType, a, n);
 	std::cout << "---------------------------------------\n";
-	if (outputPara == "-time" || outputPara == "-both")
+	if (strcmp(outputPara,"-time") == 0 || strcmp(outputPara,"-both") == 0)
 	{
 		std::cout << "The time of the sorting algorithm: ";
 		if (time != -1)
 		{
-			std::cout << std::setprecision(2) << time << "ms.\n";
+			std::cout  << time << "ms.\n";
 		}
 		else
 		{
 			std::cout << "error";
 		}
 	}
-	else if (outputPara == "-comp" || outputPara == "-both")
+	if (strcmp(outputPara,"-comp") == 0 || strcmp(outputPara, "-both") == 0)
 	{
 		std::cout << "The comparision count of the sorting algorithm: ";
 		if (comp != -1)
@@ -202,9 +202,10 @@ void time_count(char* sortType, char* outputPara, int* a, int n) //n = left, ext
 		}
 		else
 		{
-			std::cout << "error";
+			std::cout << "error\n";
 		}
 	}
+	std::cout << std::endl;
 	return;
 } 
 
