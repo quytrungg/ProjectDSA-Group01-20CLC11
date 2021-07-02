@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="command.cpp" />
     <ClCompile Include="DataGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="output.cpp" />

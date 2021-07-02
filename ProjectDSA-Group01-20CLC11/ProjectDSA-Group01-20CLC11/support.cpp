@@ -82,7 +82,7 @@ int radixSortRuntime(int* a, int n) {
 	return end-start;
 }
 
-double flashSortRuntime(int* a, int n) {
+int flashSortRuntime(int* a, int n) {
 	clock_t start, end;
 	start = clock();
 	flash_sort(a, n);

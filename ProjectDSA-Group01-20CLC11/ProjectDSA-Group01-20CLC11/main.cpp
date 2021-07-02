@@ -17,13 +17,13 @@ int main(int argc, char* argv[]) {
 	clock_t start, end;
 	start = clock();
 	//insert sorting algorithm
-	counting_sort(a, n);
-	outputFile("output.txt", a, n);
+	shaker_sort(a, n);
 	end = clock();
+	outputFile("output.txt", a, n);
 	//output time
 	std::cout << "Time: " << end - start << " ms\n";
 	//insert comparison sorting algorithm
-	counting_sort_compare(a, n, count_compare);
+	shaker_sort_compare(a, n, count_compare);
 	//output comparison
 	std::cout << "Comparison: " << count_compare;
 	return 0;

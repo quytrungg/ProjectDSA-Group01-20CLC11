@@ -13,7 +13,7 @@ void bubble_sort(int* a, int n) {
 	for (int i = 0; i < n - 1; i++) {
 		for (int j = i + 1; j < n; j++) {
 			if (a[j] < a[i]) {
-				swap_element(a[i], a[j]);
+				HoanVi(a[i], a[j]);
 			}
 		}
 	}
@@ -26,7 +26,7 @@ void bubble_sort_compare(int* a, int n,unsigned long long & count_compare) {
 	for (int i = 0; ++count_compare && i < n - 1; i++) {
 		for (int j = i + 1; ++count_compare &&  j < n; j++) {
 			if (++count_compare && a[j] < a[i]) {
-				swap_element(a[i], a[j]);
+				HoanVi(a[i], a[j]);
 			}
 		}
 	}
@@ -43,7 +43,7 @@ void selection_sort(int* a, int n) {
 				idx = j;
 			}
 		}
-		swap_element(a[idx], a[i]);
+		HoanVi(a[idx], a[i]);
 	}
 }
 
@@ -59,7 +59,7 @@ void selection_sort_compare(int* a, int n, unsigned long long & count_compare) {
 				idx = j;
 			}
 		}
-		swap_element(a[idx], a[i]);
+		HoanVi(a[idx], a[i]);
 	}
 }
 
@@ -97,22 +97,22 @@ void insertion_sort_compare(int* a, int n, unsigned long long & count_compare) {
 //4. Shaker sort
 void shaker_sort(int* a, int n) {
 	//a = new int[n];
-	int left = 0, right = n - 1, idx;
+	int left = 0, right = n - 1, idx = 0;
 	while (left < right) {
-		for (int i = right; i > left; i--) {
-			if (a[i - 1] > a[i]) {
-				swap_element(a[i], a[i - 1]);
-				idx = i;
-			}
-		}
-		left = idx;
 		for (int i = left; i < right; i++) {
 			if (a[i + 1] < a[i]) {
-				swap_element(a[i], a[i + 1]);
+				HoanVi(a[i], a[i - 1]);
 				idx = i;
 			}
 		}
 		right = idx;
+		for (int i = right; i > left; i--) {
+			if (a[i - 1] > a[i]) {
+				HoanVi(a[i], a[i + 1]);
+				idx = i;
+			}
+		}
+		left = idx;
 	}
 }
 
@@ -120,18 +120,18 @@ void shaker_sort(int* a, int n) {
 void shaker_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
 	count_compare = 0;
-	int left = 0, right = n - 1, idx;
+	int left = 0, right = n - 1, idx = 0;
 	while (++count_compare&& left < right) {
-		for (int i = right; ++count_compare && i > left; i--) {
+		for (int i = left; ++count_compare && i < right; i++) {
 			if (++count_compare && a[i - 1] > a[i]) {
-				swap_element(a[i], a[i - 1]);
+				HoanVi(a[i], a[i - 1]);
 				idx = i;
 			}
 		}
-		left = idx;
-		for (int i = left; ++count_compare && i < right; i++) {
+		right = idx;
+		for (int i = right; ++count_compare && i > left; i--) {
 			if (++count_compare&& a[i + 1] < a[i]) {
-				swap_element(a[i], a[i + 1]);
+				HoanVi(a[i], a[i + 1]);
 				idx = i;
 			}
 		}
@@ -178,7 +178,7 @@ void heapify_sort(int* a, int n, int i) {
 	if (right < n && a[right] > a[max])
 		max = right;
 	if (max != i) {
-		swap_element(a[i], a[max]);
+		HoanVi(a[i], a[max]);
 		heapify_sort(a, n, max);
 	}
 }
@@ -189,7 +189,7 @@ void heap_sort(int* a, int n) {
 		heapify_sort(a, n, i);
 	for (int i = n - 1; i > 0; i--)
 	{
-		swap_element(a[0], a[i]);
+		HoanVi(a[0], a[i]);
 		heapify_sort(a, i, 0);
 	}
 }
@@ -204,7 +204,7 @@ void heapify_sort_compare(int* a, int n, int i, unsigned long long & count_compa
 	if (++count_compare && right < n && ++count_compare && a[right] > a[max])
 		max = right;
 	if (++count_compare && max != i) {
-		swap_element(a[i], a[max]);
+		HoanVi(a[i], a[max]);
 		heapify_sort(a, n, max);
 	}
 }
@@ -215,7 +215,7 @@ void heap_sort_compare(int* a, int n, unsigned long long & count_compare) {
 		heapify_sort(a, n, i);
 	for (int i = n - 1; ++count_compare && i > 0; i--)
 	{
-		swap_element(a[0], a[i]);
+		HoanVi(a[0], a[i]);
 		heapify_sort(a, i, 0);
 	}
 }
@@ -321,7 +321,7 @@ void quick_sort(int* a, int left, int right) {
 		while (a[j] > pivot)
 			j--;
 		if (i <= j) {
-			swap_element(a[i], a[j]);
+			HoanVi(a[i], a[j]);
 			i++;
 			j--;
 		}
@@ -343,7 +343,7 @@ void quick_sort_compare(int* a, int left, int right, unsigned long long & count_
 		while (++count_compare && a[j] > pivot)
 			j--;
 		if (++count_compare && i <= j) {
-			swap_element(a[i], a[j]);
+			HoanVi(a[i], a[j]);
 			i++;
 			j--;
 		}
@@ -510,7 +510,7 @@ void flash_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	}
 	for (int i = 1; ++count_compare && i < m; i++)
 		l[i] += l[i - 1];
-	swap_element(a[max], a[0]);
+	HoanVi(a[max], a[0]);
 	int nmove = 0, j = 0, k = m - 1, t = 0, flash;
 	while (++count_compare && nmove < n - 1) {
 		while (++count_compare && j > l[k] - 1) {
@@ -532,8 +532,4 @@ void flash_sort_compare(int* a, int n, unsigned long long & count_compare) {
 }
 
 
-//argc, argv
-void check_input(int argc, char* argv[]) {
-
-}
 
