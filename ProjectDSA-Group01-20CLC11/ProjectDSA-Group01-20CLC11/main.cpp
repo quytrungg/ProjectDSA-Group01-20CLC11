@@ -1,6 +1,6 @@
 #include "header.h"
 
-int main() {
-	time_count();
+int main(int argc, char* argv[]) {
+	main_fake();
 	return 0;
 }

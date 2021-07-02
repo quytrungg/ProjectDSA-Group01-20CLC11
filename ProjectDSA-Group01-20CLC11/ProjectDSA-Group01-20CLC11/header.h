@@ -37,7 +37,14 @@ void merge_compare(int* a, int left, int mid, int right, int& count_compare);
 void quick_sort(int* a, int left, int right);
 void quick_sort_compare(int* a, int left, int right, int& count_compare);
 
+void counting_sort(int* a, int n);
+void counting_sort_compare(int* a, int n, int& count_compare);
 
+void radix_sort(int* a, int n);
+void radix_sort_compare(int* a, int n, int& count_compare);
+
+void check_input(int argc, char* argv[]);
+void main_fake();
 
 template <class T>
 void HoanVi(T& a, T& b);

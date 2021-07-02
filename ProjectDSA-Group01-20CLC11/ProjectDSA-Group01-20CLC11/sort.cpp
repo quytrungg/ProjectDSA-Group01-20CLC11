@@ -406,3 +406,78 @@ void counting_sort_compare(int* a, int n, int& count_compare) {
 	for (int i = 0; ++count_compare && i < n; i++)
 		a[i] = temp[i];
 }
+
+//10. Radix sort
+void radix_sort(int* a, int n) {
+	int* temp = new int[n], max = a[0], exp = 1;
+	for (int i = 0; i < n; i++) {
+		if (a[i] > max)
+			max = a[i];
+	}
+	while (max / exp > 0){
+		int* bucket = new int[10]{ 0 };
+		for (int i = 0; i < n; i++)
+			bucket[a[i] / exp % 10]++;
+		for (int i = 1; i < 10; i++)
+			bucket[i] += bucket[i - 1];
+		for (int i = n - 1; i >= 0; i--)
+			temp[--bucket[a[i] / exp % 10]] = a[i];
+		for (int i = 0; i < n; i++)
+			a[i] = temp[i];
+		exp = exp * 10;
+	}
+}
+
+//Radix sort with comparison
+void radix_sort_compare(int* a, int n, int& count_compare) {
+	int* temp = new int[n], max = a[0], exp = 1;
+	for (int i = 0; ++count_compare && i < n; i++) {
+		if (++count_compare && a[i] > max)
+			max = a[i];
+	}
+	while (++count_compare && max / exp > 0) {
+		int* bucket = new int[10]{ 0 };
+		for (int i = 0; ++count_compare && i < n; i++)
+			bucket[a[i] / exp % 10]++;
+		for (int i = 1; ++count_compare && i < 10; i++)
+			bucket[i] += bucket[i - 1];
+		for (int i = n - 1; ++count_compare && i >= 0; i--)
+			temp[--bucket[a[i] / exp % 10]] = a[i];
+		for (int i = 0; ++count_compare && i < n; i++)
+			a[i] = temp[i];
+		exp = exp * 10;
+	}
+}
+
+//11. Flash sort
+
+
+//Flash sort with comparison
+
+
+
+//argc, argv
+void check_input(int argc, char* argv[]) {
+
+}
+
+void main_fake() {
+	int* a, n, datatype, count_compare = 0;
+	std::cout << "Enter n: ";
+	std::cin >> n;
+	std::cout << "Enter data type: ";
+	std::cin >> datatype;
+	a = new int[n];
+	GenerateData(a, n, datatype);
+	clock_t start, end;
+	start = clock();
+	//insert sorting algorithm
+	selection_sort(a, n);
+	end = clock();
+	//output time
+	std::cout << "Time: " << end - start << " ms\n";
+	//insert comparison sorting algorithm
+	selection_sort_compare(a, n, count_compare);
+	//output comparison
+	std::cout << "Comparison: " << count_compare;
+}
