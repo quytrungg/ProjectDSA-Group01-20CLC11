@@ -123,8 +123,8 @@ double runTime(char* sortType, int* a, int n, int extra = 0) //main runtime calc
 	case 4: return shakerSortRuntime(a, n);
 	case 5: return shellSortRuntime(a, n);
 	case 6: return heapSortRuntime(a, n);
-	case 7: return mergeSortRuntime(a, n, extra);
-	case 8: return quickSortRuntime(a, n, extra);
+	case 7: return mergeSortRuntime(a, extra, n-1);
+	case 8: return quickSortRuntime(a, extra, n-1);
 	case 9: return countingSortRuntime(a, n);
 	case 10: return radixSortRuntime(a, n);
 	case 11: return flashSortRuntime(a, n);
@@ -160,8 +160,8 @@ int compCount(char* sortType, int* a, int n, int extra = 0) //main runtime calcu
 	case 4: shaker_sort_compare(a, n, count_compare); return count_compare;
 	case 5: shell_sort_comparision(a, n, count_compare); return count_compare;
 	case 6: heap_sort_compare(a, n, count_compare); return count_compare;
-	case 7: merge_sort_compare(a, n, extra, count_compare); return count_compare;
-	case 8: quick_sort_compare(a, n, extra, count_compare); return count_compare;
+	case 7: merge_sort_compare(a, extra, n-1, count_compare); return count_compare;
+	case 8: quick_sort_compare(a, extra,n-1, count_compare); return count_compare;
 	case 9: counting_sort_compare(a, n, count_compare); return count_compare;
 	case 10: radix_sort_compare(a, n, count_compare); return count_compare;
 	case 11: flash_sort_compare(a, n, count_compare); return count_compare;
@@ -170,18 +170,89 @@ int compCount(char* sortType, int* a, int n, int extra = 0) //main runtime calcu
 }
 
 ////////////////////////////////////////////////////////////// End of comparison count
+
+/*time_count example:
+* time_count(argv[a], argv[b], a, n); or time_count(argv[a], argv[b], a, left, right);
+* The time of the sorting algorithm: 000ms.
+* The comparision count of the sorting algorithm: 000 comparision(s).*/
+
 void time_count(char* sortType, char* outputPara, int* a, int n, int extra = 0) //n = left, extra = right
 {
-	float time = runTime(sortType, a, n, extra);
-	std::cout << "The time of the sorting algorithm: ";
-	if(time != -1)
+	double time = runTime(sortType, a, n);
+	int comp = compCount(sortType, a, n);
+	std::cout << "---------------------------------------\n";
+	if (outputPara == "-time" || outputPara == "-both")
 	{
-		std::cout << std::setprecision(2) << time << " ms.\n";
+		std::cout << "The time of the sorting algorithm: ";
+		if (time != -1)
+		{
+			std::cout << std::setprecision(2) << time << "ms.\n";
+		}
+		else
+		{
+			std::cout << "error";
+		}
 	}
-	int comp = compCount(sortType, a, n, extra);
-	std::cout << "The comparision count of the sorting algorithm: ";
-	if (comp != -1)
+	else if (outputPara == "-comp" || outputPara == "-both")
 	{
-		std::cout << comp << " comparision(s).\n";
+		std::cout << "The comparision count of the sorting algorithm: ";
+		if (comp != -1)
+		{
+			std::cout << comp << " comparision(s).\n";
+		}
+		else
+		{
+			std::cout << "error";
+		}
+	}
+	return;
+} 
+
+void algorithmMode(int argc, char* argv[], int a[])
+{
+	std::cout << "ALGORITHM MODE\n";
+	std::cout << "Algorithm: " << argv[2] << std::endl;
+	if (isalpha(argv[3][0])) //command1
+	{
+		std::cout << "Input file: " << argv[3] << std::endl;
+		std::cout << "Input size: " << /*file size*/ std::endl;
+		//do the things
+	}
+	else if (!isalpha(argv[3][0]) && argc == 5)//command3
+	{
+		std::cout << "Input size: " << argv[3] << "\n\n";
+		for (int i = 0; i < 4; i++ )
+		{
+			std::cout << "Input order: ";
+			switch (i)
+			{
+			case 0:
+				std::cout << "Randomize\n";
+				break;
+			case 1:	
+				std::cout << "Sorted\n";
+				break;
+			case 2:	
+				std::cout << "Reversed\n";
+				break;
+			case 3:	
+				std::cout << "Nearly Sorted\n";
+				break;
+			}
+			a = new int[std::stoi(argv[3])];
+			GenerateData(a, std::stoi(argv[3]), i);
+			time_count(argv[2], argv[4], a, std::stoi(argv[3]));
+		}
+	}
+	else if (!isalpha(argv[3][0]) && argc == 6) //command3
+	{
+		std::cout << "Input size: " << argv[3] << "\n";
+		int inOr = -1;
+		if (argv[4] == "-rand") inOr = 0;
+		else if (argv[4] == "-nsorted") inOr = 3;
+		else if (argv[4] == "-sorted") inOr = 1;
+		else if (argv[4] == "-rev") inOr = 2;
+		GenerateData(a, std::stoi(argv[3]), inOr);
+		time_count(argv[2], argv[5], a, std::stoi(argv[3]);
 	}
 }
