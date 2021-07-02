@@ -48,8 +48,10 @@ void counting_sort_compare(int* a, int n, int& count_compare);
 void radix_sort(int* a, int n);
 void radix_sort_compare(int* a, int n, int& count_compare);
 
+void flash_sort(int* a, int n);
+void flash_sort_compare(int* a, int n, int& count_compare);
+
 void check_input(int argc, char* argv[]);
-void main_fake();
 
 template <class T>
 void HoanVi(T& a, T& b);
@@ -58,6 +60,11 @@ void GenerateSortedData(int a[], int n);
 void GenerateReverseData(int a[], int n);
 void GenerateNearlySortedData(int a[], int n);
 void GenerateData(int a[], int n, int dataType);
+
+
+
+void outputFile1(char*, int a[], int);
+void outputFile2(char*, int*, int);
 
 #endif // !HEADER_H
 

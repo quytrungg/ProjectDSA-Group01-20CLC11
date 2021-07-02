@@ -211,7 +211,6 @@ void heapify_sort_compare(int* a, int n, int i, int& count_compare) {
 
 void heap_sort_compare(int* a, int n, int& count_compare) {
 	//a = new int[n];
-	count_compare = 0;
 	for (int i = (n - 1) / 2; ++count_compare && i >= 0; i--)
 		heapify_sort(a, n, i);
 	for (int i = n - 1; ++count_compare && i > 0; i--)
@@ -269,7 +268,6 @@ void merge(int* a, int left, int mid, int right) {
 //Merge sort with comparison
 void merge_sort_compare(int* a, int left, int right, int& count_compare) {
 	//a = new int[n];
-	count_compare = 0;
 	if (++count_compare && left < right) {
 		int mid = left + (right + 1) / 2;
 		merge_sort_compare(a, left, mid, count_compare);
@@ -337,7 +335,6 @@ void quick_sort(int* a, int left, int right) {
 //Quick sort with comparison
 void quick_sort_compare(int* a, int left, int right, int& count_compare) {
 	//a = new int[n];
-	count_compare = 0;
 	int mid = (left + right) / 2, pivot = a[mid];
 	int i = left, j = right;
 	while (++count_compare && i <= j) {
@@ -430,6 +427,7 @@ void radix_sort(int* a, int n) {
 
 //Radix sort with comparison
 void radix_sort_compare(int* a, int n, int& count_compare) {
+	//a = new int[n];
 	int* temp = new int[n], max = a[0], exp = 1;
 	for (int i = 0; ++count_compare && i < n; i++) {
 		if (++count_compare && a[i] > max)
@@ -450,10 +448,88 @@ void radix_sort_compare(int* a, int n, int& count_compare) {
 }
 
 //11. Flash sort
-
+void flash_sort(int* a, int n) {
+	int min = a[0], max = 0, m = int(0.45 * n);
+	int* l = new int[m];
+	for (int i = 0; i < m; i++)
+		l[i] = 0;
+	for (int i = 1; i < n; i++){
+		if (a[i] < min)
+			min = a[i];
+		if (a[i] > a[max])
+			max = i;
+	}
+	if (a[max] == min)
+		return;
+	double c1 = (double)(m - 1) / (a[max] - min);
+	for (int i = 0; i < n; i++) {
+		int k = int(c1 * (a[i] - min));
+		++l[k];
+	}
+	for (int i = 1; i < m; i++)
+		l[i] += l[i - 1];
+	HoanVi(a[max], a[0]);
+	int nmove = 0, j = 0, k = m - 1, t = 0, flash;
+	while (nmove < n - 1) {
+		while (j > l[k] - 1) {
+			j++;
+			k = int(c1 * (a[j] - min));
+		}
+		flash = a[j];
+		if (k < 0) break;
+		while (j != l[k]) {
+			k = int(c1 * (flash - min));
+			int hold = a[t = --l[k]];
+			a[t] = flash;
+			flash = hold;
+			++nmove;
+		}
+	}
+	delete[] l;
+	insertion_sort(a, n);
+}
 
 //Flash sort with comparison
-
+void flash_sort_compare(int* a, int n, int& count_compare) {
+	int min = a[0], max = 0, m = int(0.45 * n);
+	int* l = new int[m];
+	for (int i = 0; ++count_compare && i < m; i++)
+		l[i] = 0;
+	for (int i = 1; ++count_compare && i < n; i++) {
+		if (++count_compare && a[i] < min)
+			min = a[i];
+		if (++count_compare && a[i] > a[max])
+			max = i;
+	}
+	if (++count_compare && a[max] == min)
+		return;
+	double c1 = (double)(m - 1) / (a[max] - min);
+	for (int i = 0; ++count_compare && i < n; i++) {
+		int k = int(c1 * (a[i] - min));
+		++l[k];
+	}
+	for (int i = 1; ++count_compare && i < m; i++)
+		l[i] += l[i - 1];
+	swap_element(a[max], a[0]);
+	int nmove = 0, j = 0, k = m - 1, t = 0, flash;
+	while (++count_compare && nmove < n - 1) {
+		while (++count_compare && j > l[k] - 1) {
+			j++;
+			k = int(c1 * (a[j] - min));
+		}
+		flash = a[j];
+		if (++count_compare && k < 0) break;
+		while (++count_compare && j != l[k]) {
+			k = int(c1 * (flash - min));
+			int hold = a[t = --l[k]];
+			a[t] = flash;
+			flash = hold;
+			++nmove;
+		}
+	}
+	delete[] l;
+	insertion_sort(a, n);
+}
 
 
 //argc, argv
@@ -461,23 +537,3 @@ void check_input(int argc, char* argv[]) {
 
 }
 
-void main_fake() {
-	int* a, n, datatype, count_compare = 0;
-	std::cout << "Enter n: ";
-	std::cin >> n;
-	std::cout << "Enter data type: ";
-	std::cin >> datatype;
-	a = new int[n];
-	GenerateData(a, n, datatype);
-	clock_t start, end;
-	start = clock();
-	//insert sorting algorithm
-	selection_sort(a, n);
-	end = clock();
-	//output time
-	std::cout << "Time: " << end - start << " ms\n";
-	//insert comparison sorting algorithm
-	selection_sort_compare(a, n, count_compare);
-	//output comparison
-	std::cout << "Comparison: " << count_compare;
-}
