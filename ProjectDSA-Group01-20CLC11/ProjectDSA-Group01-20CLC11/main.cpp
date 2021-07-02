@@ -1,6 +1,6 @@
 #include "header.h"
 
 int main() {
-	std::cout << "Hello World";
+	time_count();
 	return 0;
 }

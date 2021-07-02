@@ -7,17 +7,36 @@
 #include <time.h>
 
 void swap_element(int a, int b);
+void time_count();
 
 void bubble_sort(int* a, int n);
 void bubble_sort_compare(int* a, int n, int& count_compare);
+
 void selection_sort(int* a, int n);
 void selection_sort_compare(int* a, int n, int& count_compare);
+
 void insertion_sort(int* a, int n);
 void insertion_sort_compare(int* a, int n, int& count_compare);
+
 void shaker_sort(int* a, int n);
 void shaker_sort_compare(int* a, int n, int& count_compare);
+
 void shell_sort(int* a, int n);
 void shell_sort_comparision(int* a, int n, int& count_compare);
+
+void heapify_sort(int* a, int n, int i);
+void heap_sort(int* a, int n);
+void heapify_sort_compare(int* a, int n, int i, int& count_compare);
+void heap_sort_compare(int* a, int n, int& count_compare);
+
+void merge_sort(int* a, int left, int right);
+void merge(int* a, int left, int mid, int right);
+void merge_sort_compare(int* a, int left, int right, int& count_compare);
+void merge_compare(int* a, int left, int mid, int right, int& count_compare);
+
+void quick_sort(int* a, int left, int right);
+void quick_sort_compare(int* a, int left, int right, int& count_compare);
+
 
 
 template <class T>
