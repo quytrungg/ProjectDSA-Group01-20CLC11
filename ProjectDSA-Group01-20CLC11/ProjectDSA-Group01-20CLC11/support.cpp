@@ -2,107 +2,96 @@
 
 ///////////////// RunTime ////////////////
 
-double selectionSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+int selectionSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	selection_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC)*1000;
+	end = clock();
+	return end-start;
 }
 
-double insertionSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+int insertionSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	insertion_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double bubbleSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+int bubbleSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	bubble_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double shakerSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+int shakerSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	shaker_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double shellSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+int shellSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	shell_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double heapSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+int heapSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	heap_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double mergeSortRuntime(int* a, int left, int right)
-{
-	clock_t t;
-	t = clock();
+int mergeSortRuntime(int* a, int left, int right) {
+	clock_t start, end;
+	start = clock();
 	merge_sort(a, left, right);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double quickSortRuntime(int* a, int left, int right)
-{
-	clock_t t;
-	t = clock();
+int quickSortRuntime(int* a, int left, int right) {
+	clock_t start, end;
+	start = clock();
 	quick_sort(a, left, right);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double countingSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+int countingSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	counting_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double radixSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+int radixSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	radix_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double flashSortRuntime(int* a, int n)
-{
-	clock_t t;
-	t = clock();
+double flashSortRuntime(int* a, int n) {
+	clock_t start, end;
+	start = clock();
 	flash_sort(a, n);
-	t = clock() - t;
-	return (double(t) / CLOCKS_PER_SEC) * 1000;
+	end = clock();
+	return end-start;
 }
 
-double runTime(char* sortType, int* a, int n) //main runtime calculator (-1 = error) n = left, extra = right
-{
+//main runtime calculator (-1 = error) n = left, extra = right
+double runTime(char* sortType, int* a, int n) {
 	int type = 0;
 	if (strcmp(sortType, "selection-sort") == 0) type = 1;
 	else if (strcmp(sortType, "insertion-sort") == 0) type = 2;
@@ -137,9 +126,10 @@ double runTime(char* sortType, int* a, int n) //main runtime calculator (-1 = er
 
 ///////////////// Comparison Count ////////////////
 
-int compCount(char* sortType, int* a, int n) //main runtime calculator (-1 = error) n = left, extra = right
-{
-	int count_compare = 0, type = 0;
+//main runtime calculator (-1 = error) n = left, extra = right
+int compCount(char* sortType, int* a, int n) {
+	unsigned long long count_compare = 0;
+	int type = 0;
 
 	if (strcmp(sortType, "selection-sort") == 0) type = 1;
 	else if (strcmp(sortType, "insertion-sort") == 0) type = 2;
@@ -176,8 +166,8 @@ int compCount(char* sortType, int* a, int n) //main runtime calculator (-1 = err
 * The time of the sorting algorithm: 000ms.
 * The comparision count of the sorting algorithm: 000 comparision(s).*/
 
-void time_count(char* sortType, char* outputPara, int* a, int n) //n = left, extra = right
-{
+//n = left, extra = right
+void time_count(char* sortType, char* outputPara, int* a, int n) {
 	double time = runTime(sortType, a, n);
 	int comp = compCount(sortType, a, n);
 	std::cout << "---------------------------------------\n";
@@ -209,8 +199,7 @@ void time_count(char* sortType, char* outputPara, int* a, int n) //n = left, ext
 	return;
 } 
 
-void algorithmMode(int argc, char* argv[], int*& a)
-{
+void algorithmMode(int argc, char* argv[], int*& a) {
 	std::cout << "ALGORITHM MODE\n";
 	std::cout << "Algorithm: " << argv[2] << std::endl;
 	if (isalpha(argv[3][0])) //command1

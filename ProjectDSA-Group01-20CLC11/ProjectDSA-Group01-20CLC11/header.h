@@ -14,41 +14,41 @@ void swap_element(int a, int b);
 void time_count(char* sortType, char* outputPara, int* a, int n);
 
 void bubble_sort(int* a, int n);
-void bubble_sort_compare(int* a, int n, int& count_compare);
+void bubble_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 void selection_sort(int* a, int n);
-void selection_sort_compare(int* a, int n, int& count_compare);
+void selection_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 void insertion_sort(int* a, int n);
-void insertion_sort_compare(int* a, int n, int& count_compare);
+void insertion_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 void shaker_sort(int* a, int n);
-void shaker_sort_compare(int* a, int n, int& count_compare);
+void shaker_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 void shell_sort(int* a, int n);
-void shell_sort_comparision(int* a, int n, int& count_compare);
+void shell_sort_comparision(int* a, int n, unsigned long long & count_compare);
 
 void heapify_sort(int* a, int n, int i);
 void heap_sort(int* a, int n);
-void heapify_sort_compare(int* a, int n, int i, int& count_compare);
-void heap_sort_compare(int* a, int n, int& count_compare);
+void heapify_sort_compare(int* a, int n, int i, unsigned long long & count_compare);
+void heap_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 void merge_sort(int* a, int left, int right);
 void merge(int* a, int left, int mid, int right);
-void merge_sort_compare(int* a, int left, int right, int& count_compare);
-void merge_compare(int* a, int left, int mid, int right, int& count_compare);
+void merge_sort_compare(int* a, int left, int right, unsigned long long & count_compare);
+void merge_compare(int* a, int left, int mid, int right, unsigned long long & count_compare);
 
 void quick_sort(int* a, int left, int right);
-void quick_sort_compare(int* a, int left, int right, int& count_compare);
+void quick_sort_compare(int* a, int left, int right, unsigned long long & count_compare);
 
 void counting_sort(int* a, int n);
-void counting_sort_compare(int* a, int n, int& count_compare);
+void counting_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 void radix_sort(int* a, int n);
-void radix_sort_compare(int* a, int n, int& count_compare);
+void radix_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 void flash_sort(int* a, int n);
-void flash_sort_compare(int* a, int n, int& count_compare);
+void flash_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 void check_input(int argc, char* argv[]);
 
@@ -61,9 +61,8 @@ void GenerateNearlySortedData(int a[], int n);
 void GenerateData(int a[], int n, int dataType);
 
 
-
-void outputFile1(char*, int a[], int);
-void outputFile2(char*, int*, int);
+void outputFile(const char*, int*, int);
+void outputFile4(const char* filename, int* a, int n);
 
 #endif // !HEADER_H
 

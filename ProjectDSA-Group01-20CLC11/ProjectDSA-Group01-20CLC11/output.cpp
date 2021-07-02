@@ -8,29 +8,19 @@
 //					  sorted -> "input_3.txt"
 //					reversed -> "input_4.txt"
 
-
-void outputFile1(char* filename ,int a[], int n) {
-	std::ofstream f;
-	f.open(filename, std::ios_base::out);
-	if (f.fail()) {
-		std::cout << "Cannot open file\n";
-		return;
-	}
+void outputFile(const char* filename, int* a, int n) {
+	std::fstream f;
+	f.open(filename, std::fstream::out);
 	f << n << std::endl;
 	for (int i = 0; i < n; i++)
 		f << a[i] << " ";
 	f.close();
 }
 
-void outputFile2(char* filename, int* a, int n) {
-	std::ofstream f;
-	f.open(filename, std::ios_base::out);
-	if (f.fail()) {
-		std::cout << "Cannot open file\n";
-		return;
+void outputFile4(const char* filename, int* a, int n) {	
+	std::fstream f(filename, std::fstream::out);
+	for (int i = 0; i < 4; i++) {
+
 	}
-	f << n << std::endl;
-	for (int i = 0; i < n; i++)
-		f << a[i] << " ";
 	f.close();
 }

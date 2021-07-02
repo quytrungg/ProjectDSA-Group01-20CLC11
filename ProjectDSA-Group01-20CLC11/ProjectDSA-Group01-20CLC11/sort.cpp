@@ -20,7 +20,7 @@ void bubble_sort(int* a, int n) {
 }
 
 //Bubble sort with comparison
-void bubble_sort_compare(int* a, int n, int& count_compare) {
+void bubble_sort_compare(int* a, int n,unsigned long long & count_compare) {
 	//a = new int[n];
 	count_compare = 0;
 	for (int i = 0; ++count_compare && i < n - 1; i++) {
@@ -48,7 +48,7 @@ void selection_sort(int* a, int n) {
 }
 
 //Selection sort with comparison
-void selection_sort_compare(int* a, int n, int& count_compare) {
+void selection_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
 	int idx = 0;
 	count_compare = 0;
@@ -79,7 +79,7 @@ void insertion_sort(int* a, int n) {
 }
 
 //Insertion sort with comparison
-void insertion_sort_compare(int* a, int n, int& count_compare) {
+void insertion_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
 	int key;
 	count_compare = 0;
@@ -117,7 +117,7 @@ void shaker_sort(int* a, int n) {
 }
 
 //Shaker sort with comparison
-void shaker_sort_compare(int* a, int n, int& count_compare) {
+void shaker_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
 	count_compare = 0;
 	int left = 0, right = n - 1, idx;
@@ -154,7 +154,7 @@ void shell_sort(int* a, int n) {
 }
 
 //Shell sort with comparison
-void shell_sort_comparision(int* a, int n, int& count_compare) {
+void shell_sort_comparision(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
 	count_compare = 0;
 	for (int interval = n / 2; ++count_compare && interval > 0; interval = interval / 2) {
@@ -195,7 +195,7 @@ void heap_sort(int* a, int n) {
 }
 
 //Heap sort with comparison
-void heapify_sort_compare(int* a, int n, int i, int& count_compare) {
+void heapify_sort_compare(int* a, int n, int i, unsigned long long & count_compare) {
 	int max = i;
 	int left = 2 * i + 1;
 	int right = 2 * i + 2;
@@ -209,7 +209,7 @@ void heapify_sort_compare(int* a, int n, int i, int& count_compare) {
 	}
 }
 
-void heap_sort_compare(int* a, int n, int& count_compare) {
+void heap_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
 	for (int i = (n - 1) / 2; ++count_compare && i >= 0; i--)
 		heapify_sort(a, n, i);
@@ -266,7 +266,7 @@ void merge(int* a, int left, int mid, int right) {
 }
 
 //Merge sort with comparison
-void merge_sort_compare(int* a, int left, int right, int& count_compare) {
+void merge_sort_compare(int* a, int left, int right, unsigned long long & count_compare) {
 	//a = new int[n];
 	if (++count_compare && left < right) {
 		int mid = left + (right + 1) / 2;
@@ -276,7 +276,7 @@ void merge_sort_compare(int* a, int left, int right, int& count_compare) {
 	}
 }
 
-void merge_compare(int* a, int left, int mid, int right, int& count_compare) {
+void merge_compare(int* a, int left, int mid, int right, unsigned long long & count_compare) {
 	int n1 = mid - left + 1, n2 = right - mid;
 	int* temp1 = new int[n1];
 	int* temp2 = new int[n2];
@@ -333,7 +333,7 @@ void quick_sort(int* a, int left, int right) {
 }
 
 //Quick sort with comparison
-void quick_sort_compare(int* a, int left, int right, int& count_compare) {
+void quick_sort_compare(int* a, int left, int right, unsigned long long & count_compare) {
 	//a = new int[n];
 	int mid = (left + right) / 2, pivot = a[mid];
 	int i = left, j = right;
@@ -379,7 +379,7 @@ void counting_sort(int* a, int n) {
 }
 
 //Counting sort with comparison
-void counting_sort_compare(int* a, int n, int& count_compare) {
+void counting_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
 	count_compare = 0;
 	int* temp = new int[n];
@@ -426,7 +426,7 @@ void radix_sort(int* a, int n) {
 }
 
 //Radix sort with comparison
-void radix_sort_compare(int* a, int n, int& count_compare) {
+void radix_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
 	int* temp = new int[n], max = a[0], exp = 1;
 	for (int i = 0; ++count_compare && i < n; i++) {
@@ -490,7 +490,7 @@ void flash_sort(int* a, int n) {
 }
 
 //Flash sort with comparison
-void flash_sort_compare(int* a, int n, int& count_compare) {
+void flash_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	int min = a[0], max = 0, m = int(0.45 * n);
 	int* l = new int[m];
 	for (int i = 0; ++count_compare && i < m; i++)
