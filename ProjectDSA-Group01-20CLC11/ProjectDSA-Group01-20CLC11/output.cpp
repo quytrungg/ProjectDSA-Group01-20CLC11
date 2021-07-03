@@ -8,7 +8,7 @@
 //					  sorted -> "input_3.txt"
 //					reversed -> "input_4.txt"
 
-void outputFile(const char* filename, int* a, int n) {
+void outputFile(std::string filename, int* a, int n) {
 	std::fstream f;
 	f.open(filename, std::fstream::out);
 	f << n << std::endl;
@@ -17,10 +17,15 @@ void outputFile(const char* filename, int* a, int n) {
 	f.close();
 }
 
-void outputFile4(const char* filename, int* a, int n) {	
-	std::fstream f(filename, std::fstream::out);
-	for (int i = 0; i < 4; i++) {
-
+void inputFile(const char* filename, int* a, int n) {
+	std::fstream f(filename, std::fstream::in);
+	if (!f) {
+		std::cout << "Can't open file!"; return;
+	}
+	f >> n;
+	//a = new int[n];
+	for (int i = 0; i < n; i++) {
+		f >> a[i];
 	}
 	f.close();
 }

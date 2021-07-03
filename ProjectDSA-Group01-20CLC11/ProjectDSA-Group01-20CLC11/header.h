@@ -8,8 +8,18 @@
 #include <ctype.h> // to differentiate between number and char
 #include <string> // because... reasons
 
-void algorithmMode(int argc, char* argv[], int*& a);
-void time_count(char* sortType, char* outputPara, int* a, int n);
+struct Command {
+	std::string mode;
+	std::string algorithm1;
+	std::string algorithm2;
+	std::string filename;
+	int size;
+	int order;
+	std::string outmode;
+};
+
+//void algorithmMode(int argc, char* argv[], int*& a);
+//void time_count(char* sortType, char* outputPara, int* a, int n);
 
 //Bubble sort
 void bubble_sort(int* a, int n);
@@ -70,9 +80,26 @@ void GenerateReverseData(int a[], int n);
 void GenerateNearlySortedData(int a[], int n);
 void GenerateData(int a[], int n, int dataType);
 
-//Ham cua Quoc Bao
-void outputFile(const char*, int*, int);
-void outputFile4(const char* filename, int* a, int n);
+//Read and Write File
+void outputFile(std::string, int*, int);
+void inputFile(std::string filename, int* a, int n);
+
+//Runtime and Comparison
+int selectionSortRuntime(int* a, int n);
+int insertionSortRuntime(int* a, int n);
+int bubbleSortRuntime(int* a, int n);
+int shakerSortRuntime(int* a, int n);
+int shellSortRuntime(int* a, int n);
+int heapSortRuntime(int* a, int n);
+int mergeSortRuntime(int* a, int left, int right);
+int quickSortRuntime(int* a, int left, int right);
+int countingSortRuntime(int* a, int n);
+int radixSortRuntime(int* a, int n);
+int flashSortRuntime(int* a, int n); 
+
+//Check case runtime and comparison
+int runTime(std::string temp, int* a, int n);
+unsigned long long compCount(std::string temp, int* a, int n);
 
 #endif // !HEADER_H
 

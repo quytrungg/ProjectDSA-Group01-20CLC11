@@ -1,12 +1,5 @@
 #include "header.h"
 
-//Swap two numbers
-void swap_element(int a, int b) {
-	int c = a;
-	a = b;
-	b = c;
-}
-
 //1. Bubble sort
 void bubble_sort(int* a, int n) {
 	//a = new int[n];
