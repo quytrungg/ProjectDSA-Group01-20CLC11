@@ -216,91 +216,135 @@ void heap_sort_compare(int* a, int n, unsigned long long & count_compare) {
 //7. Merge sort
 void merge_sort(int* a, int left, int right) {
 	//a = new int[n];
-	if (left < right) {
-		int mid = left + (right + 1) / 2;
-		merge_sort(a, left, mid);
-		merge_sort(a, mid + 1, right);
-		merge(a, left, mid, right);
+	if (right > left)
+	{
+		int mid; // Phan tu o giua
+		mid = (left + right) / 2;
+		merge_sort(a, left, mid); // Goi de quy mang con ben trai
+		merge_sort(a, mid + 1, right); // Goi de quy mang con ben phai
+		merge(a, left, mid, right); // Goi ham so sanh hai mang con
 	}
 }
 
 void merge(int* a, int left, int mid, int right) {
-	int n1 = mid - left + 1, n2 = right - mid;
-	int* temp1 = new int[n1];
-	int* temp2 = new int[n2];
-	for (int i = 0; i < right; i++) {
-		if (i <= n1) {
-			temp1[i] = a[i];
+	int* temp; // Khoi tao mang tam de sap xep
+	int i = left; // Vi tri phan tu dau tien cua mang con ben trai
+	int j = mid + 1; // Vi tri phan tu dau tien cua mang con ben phai
+
+	temp = new int[right - left + 1]; // Khoi tao so luong phan tu cua mang tam
+
+	for (int k = 0; k <= right - left; k++)
+	{
+		// Kiem phan tu cua mang con ben trai va ben phai
+		if (a[i] < a[j])
+		{
+			// Neu a[i] < a[j] thi copy phan tu ben trai vao mang tam
+			temp[k] = a[i];
+			i++; // Vi tri phan tu tiep theo cua mang
 		}
-		else {
-			temp2[i - n1] = a[i];
+		else // Nguoc lai copy phan tu cua mang con ben phai vao mang tam
+		{
+			temp[k] = a[j];
+			j++; // Vi tri phan tu tiep theo cua mang
+		}
+
+		// Kiem tra mang con ben trai con phan tu nao khong
+		if (i == mid + 1)
+		{
+			// Nguoc lai dua cac phan tu con lai cua mang con ben phai vao mang tam
+			while (j <= right)
+			{
+				k++;
+				temp[k] = a[j];
+				j++;
+			}
+			break;
+		}
+
+		// Kiem tra mang con ben phai con phan tu nao khong
+		if (j == right + 1)
+		{
+			// Nguoc lai dua cac phan tu con lai cua mang con ben phai vao mang tam
+			while (i <= mid)
+			{
+				k++;
+				temp[k] = a[i];
+				i++;
+			}
+			break;
 		}
 	}
-	int i = 0, j = 0, idx = left;
-	while (i < n1 && j < n2) {
-		if (temp1[i] <= temp2[j]) {
-			a[idx] = temp1[i];
-			i++;
-		}
-		else {
-			a[idx] = temp2[j];
-			j++;
-		}
-		idx++;
-	}
-	while (i < n1) {
-		a[idx] = temp1[i];
-		i++; idx++;
-	}
-	while (j < n2) {
-		a[idx] = temp2[j];
-		j++; idx++;
-	}
+
+	for (int k = 0; k <= right - left; k++) // Chep mang tam vao mang chinh
+		a[left + k] = temp[k];
+	delete temp;
 }
 
 //Merge sort with comparison
-void merge_sort_compare(int* a, int left, int right, unsigned long long & count_compare) {
+void merge_sort_compare(int* a, int left, int right, unsigned long long& count_compare) {
 	//a = new int[n];
-	if (++count_compare && left < right) {
-		int mid = left + (right + 1) / 2;
-		merge_sort_compare(a, left, mid, count_compare);
-		merge_sort_compare(a, mid + 1, right, count_compare);
-		merge_compare(a, left, mid, right, count_compare);
+	if (++count_compare && right > left)
+	{
+		int mid; // Phan tu o giua
+		mid = (left + right) / 2;
+		merge_sort_compare(a, left, mid, count_compare); // Goi de quy mang con ben trai
+		merge_sort_compare(a, mid + 1, right, count_compare); // Goi de quy mang con ben phai
+		merge_compare(a, left, mid, right, count_compare); // Goi ham so sanh hai mang con
 	}
 }
 
-void merge_compare(int* a, int left, int mid, int right, unsigned long long & count_compare) {
-	int n1 = mid - left + 1, n2 = right - mid;
-	int* temp1 = new int[n1];
-	int* temp2 = new int[n2];
-	for (int i = 0; ++count_compare && i < right; i++) {
-		if (++count_compare && i <= n1) {
-			temp1[i] = a[i];
+void merge_compare(int* a, int left, int mid, int right, unsigned long long& count_compare) {
+	int* temp; // Khoi tao mang tam de sap xep
+	int i = left; // Vi tri phan tu dau tien cua mang con ben trai
+	int j = mid + 1; // Vi tri phan tu dau tien cua mang con ben phai
+
+	temp = new int[right - left + 1]; // Khoi tao so luong phan tu cua mang tam
+
+	for (int k = 0; ++count_compare && k <= right - left; k++)
+	{
+		// Kiem phan tu cua mang con ben trai va ben phai
+		if (++count_compare && a[i] < a[j])
+		{
+			// Neu a[i] < a[j] thi copy phan tu ben trai vao mang tam
+			temp[k] = a[i];
+			i++; // Vi tri phan tu tiep theo cua mang
 		}
-		else {
-			temp2[i - n1] = a[i];
+		else // Nguoc lai copy phan tu cua mang con ben phai vao mang tam
+		{
+			temp[k] = a[j];
+			j++; // Vi tri phan tu tiep theo cua mang
+		}
+
+		// Kiem tra mang con ben trai con phan tu nao khong
+		if (++count_compare && i == mid + 1)
+		{
+			// Nguoc lai dua cac phan tu con lai cua mang con ben phai vao mang tam
+			while (++count_compare && j <= right)
+			{
+				k++;
+				temp[k] = a[j];
+				j++;
+			}
+			break;
+		}
+
+		// Kiem tra mang con ben phai con phan tu nao khong
+		if (++count_compare && j == right + 1)
+		{
+			// Nguoc lai dua cac phan tu con lai cua mang con ben phai vao mang tam
+			while (++count_compare && i <= mid)
+			{
+				k++;
+				temp[k] = a[i];
+				i++;
+			}
+			break;
 		}
 	}
-	int i = 0, j = 0, idx = left;
-	while (++count_compare && i < n1 && ++count_compare && j < n2) {
-		if (++count_compare && temp1[i] <= temp2[j]) {
-			a[idx] = temp1[i];
-			i++;
-		}
-		else {
-			a[idx] = temp2[j];
-			j++;
-		}
-		idx++;
-	}
-	while (++count_compare && i < n1) {
-		a[idx] = temp1[i];
-		i++; idx++;
-	}
-	while (++count_compare && j < n2) {
-		a[idx] = temp2[j];
-		j++; idx++;
-	}
+
+	for (int k = 0; ++count_compare && k <= right - left; k++) // Chep mang tam vao mang chinh
+		a[left + k] = temp[k];
+	delete temp;
 }
 
 //8. Quick sort

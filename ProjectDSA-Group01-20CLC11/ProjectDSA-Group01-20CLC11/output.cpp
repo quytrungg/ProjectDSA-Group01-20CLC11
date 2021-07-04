@@ -1,6 +1,5 @@
 #include "header.h"
 
-
 //	Command 1, 2: sorted array -> "output.txt"
 //	Command 2, 5: generated input -> "input.txt"
 //	Command 3: random order  -> "input_1.txt"
@@ -38,8 +37,10 @@ void inputFile(std::string filename, int* a, int n) {
 	f.close();
 }
 
-void copyFile(int* a, int* b, int n) {
+int* copyFile(int* a, int n) {
+	int* b = new int[n];
 	for (int i = 0; i < n; i++) {
 		b[i] = a[i];
 	}
+	return b;
 }
