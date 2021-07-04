@@ -13,11 +13,11 @@ int main(int argc, char* argv[]) {
 	//outputFile("input.txt", a, n);
 	clock_t start, end;
 	start = clock();
-	flash_sort(a,n);
+	selection_sort(a,n);
 	end = clock();
 	outputFile("output.txt", a, n);
 	std::cout << "Time: " << end - start << " ms\n";
-	flash_sort_compare(b,n, count_compare);
+	selection_sort_compare(b,n, count_compare);
 	std::cout << "Comparison: " << count_compare;
 	return 0;
 }

@@ -103,5 +103,17 @@ int flashSortRuntime(int* a, int n);
 int runTime(std::string temp, int* a, int n);
 unsigned long long compCount(std::string temp, int* a, int n);
 
+//Support command
+void check_input(int argc, char* argv[]);
+bool check_number(char* argv);
+
+//Command arguments
+void command_1(Command C, int* a, int n);
+void command_2(Command C, int* a, int n);
+void command_3(Command C, int* a, int n);
+void command_4(Command C, int* a, int n);
+void command_5(Command C, int* a, int n);
+void command(Command C, int argc, char* argv[], int* a, int n);
+
 #endif // !HEADER_H
 
