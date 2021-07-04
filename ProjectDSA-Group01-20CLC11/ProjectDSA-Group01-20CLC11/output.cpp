@@ -17,7 +17,15 @@ void outputFile(std::string filename, int* a, int n) {
 	f.close();
 }
 
-void inputFile(const char* filename, int* a, int n) {
+int inputSize(std::string filename) {
+	int n;
+	std::fstream f(filename, std::fstream::in);
+	f >> n;
+	f.close();
+	return n;
+}
+
+void inputFile(std::string filename, int* a, int n) {
 	std::fstream f(filename, std::fstream::in);
 	if (!f) {
 		std::cout << "Can't open file!"; return;
@@ -28,4 +36,10 @@ void inputFile(const char* filename, int* a, int n) {
 		f >> a[i];
 	}
 	f.close();
+}
+
+void copyFile(int* a, int* b, int n) {
+	for (int i = 0; i < n; i++) {
+		b[i] = a[i];
+	}
 }

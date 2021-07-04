@@ -11,8 +11,7 @@ void check_input(int argc, char* argv[]) {
 	a.outmode = argv[5];
 }
 
-void command_1(Command C) {
-	int* a, n;
+void command_1(Command C, int* a, int n) {
 	inputFile(C.filename, a, n);
 	std::cout << "ALGORITHM MODE\n";
 	std::cout << "Algorithm: " << C.algorithm1 << "\n";
@@ -27,8 +26,7 @@ void command_1(Command C) {
 	}
 }
 
-void command_2(Command C) {
-	int* a, n;
+void command_2(Command C, int* a, int n) {
 	std::cout << "ALGORITHM MODE\n";
 	std::cout << "Algorithm: " << C.algorithm1 << "\n";
 	std::cout << "Input size: " << C.size << "\n";
@@ -43,8 +41,7 @@ void command_2(Command C) {
 	}
 }
 
-void command_3(Command C) {
-	int* a, n;
+void command_3(Command C, int* a, int n) {
 	std::cout << "ALGORITHM MODE";
 	std::cout << "Algorithm: " << C.algorithm1 << "\n";
 	std::cout << "Input size: " << C.size << "\n\n";
@@ -70,8 +67,7 @@ void command_3(Command C) {
 	std::cout << "Comparisons (If required): " << compCount(C.algorithm1, a, n) << "\n\n";
 }
 
-void command_4(Command C) {
-	int* a, n;
+void command_4(Command C, int* a, int n) {
 	std::cout << "COMPARE MODE\n";
 	std::cout << "Algorithm: " << C.algorithm1 << " | " << C.algorithm2 << "\n";
 

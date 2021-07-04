@@ -521,8 +521,7 @@ void flash_sort_compare(int* a, int n, unsigned long long & count_compare) {
 		}
 	}
 	delete[] l;
-	insertion_sort(a, n);
+	insertion_sort_compare(a, n, count_compare);
 }
-
 
 

@@ -83,6 +83,8 @@ void GenerateData(int a[], int n, int dataType);
 //Read and Write File
 void outputFile(std::string, int*, int);
 void inputFile(std::string filename, int* a, int n);
+int inputSize(std::string filename);
+void copyFile(int* a, int* b, int n);
 
 //Runtime and Comparison
 int selectionSortRuntime(int* a, int n);
