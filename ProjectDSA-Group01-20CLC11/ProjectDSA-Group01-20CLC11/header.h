@@ -14,7 +14,7 @@ struct Command {
 	std::string algorithm2;
 	std::string filename;
 	int size;
-	int order;
+	std::string order;
 	std::string outmode;
 };
 
@@ -39,7 +39,7 @@ void shaker_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 //Shell sort
 void shell_sort(int* a, int n);
-void shell_sort_comparision(int* a, int n, unsigned long long & count_compare);
+void shell_sort_compare(int* a, int n, unsigned long long & count_compare);
 
 //Heap sort
 void heapify_sort(int* a, int n, int i);
@@ -69,7 +69,6 @@ void radix_sort_compare(int* a, int n, unsigned long long & count_compare);
 void flash_sort(int* a, int n);
 void flash_sort_compare(int* a, int n, unsigned long long & count_compare);
 
-void check_input(int argc, char* argv[]);
 
 //Ham cua thay Thong
 template <class T>
@@ -104,7 +103,7 @@ int runTime(std::string temp, int* a, int n);
 unsigned long long compCount(std::string temp, int* a, int n);
 
 //Support command
-void check_input(int argc, char* argv[]);
+Command check_input(int argc, char* argv[]);
 bool check_number(char* argv);
 
 //Command arguments
@@ -114,6 +113,11 @@ void command_3(Command C, int* a, int n);
 void command_4(Command C, int* a, int n);
 void command_5(Command C, int* a, int n);
 void command(Command C, int argc, char* argv[], int* a, int n);
+
+
+
+void Heapify_Comparison(int a[], int n, int i, unsigned __int64& count_comparison);
+void Heap_Sort_Comparison(int a[], int n, unsigned __int64& count_comparison);
 
 #endif // !HEADER_H
 

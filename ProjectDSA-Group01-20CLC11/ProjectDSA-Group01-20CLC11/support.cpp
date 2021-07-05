@@ -138,7 +138,7 @@ unsigned long long compCount(std::string temp, int* a, int n) {
 	case 2: insertion_sort_compare(a, n, count_compare); return count_compare;
 	case 3: bubble_sort_compare(a, n, count_compare); return count_compare;
 	case 4: shaker_sort_compare(a, n, count_compare); return count_compare;
-	case 5: shell_sort_comparision(a, n, count_compare); return count_compare;
+	case 5: shell_sort_compare(a, n, count_compare); return count_compare;
 	case 6: heap_sort_compare(a, n, count_compare); return count_compare;
 	case 7: merge_sort_compare(a, 0, n-1, count_compare); return count_compare;
 	case 8: quick_sort_compare(a, 0,n-1, count_compare); return count_compare;
