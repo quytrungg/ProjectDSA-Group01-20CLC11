@@ -24,17 +24,18 @@ int inputSize(std::string filename) {
 	return n;
 }
 
-void inputFile(std::string filename, int* a, int n) {
+int* inputFile(std::string filename, int n) {
 	std::fstream f(filename, std::fstream::in);
 	if (!f) {
-		std::cout << "Can't open file!"; return;
+		std::cout << "Can't open file!"; return nullptr;
 	}
 	f >> n;
-	//a = new int[n];
+	int* a = new int[n];
 	for (int i = 0; i < n; i++) {
 		f >> a[i];
 	}
 	f.close();
+	return a;
 }
 
 int* copyFile(int* a, int n) {

@@ -180,27 +180,33 @@ void heap_sort(int* a, int n) {
 
 //Heap sort with comparison
 void heapify_sort_compare(int* a, int n, int i, unsigned long long & count_compare) {
-	int max = i;
+	int root = i;
 	int left = 2 * i + 1;
 	int right = 2 * i + 2;
-	if (++count_compare && left < n && ++count_compare && a[left] > a[max])
-		max = left;
-	if (++count_compare && right < n && ++count_compare && a[right] > a[max])
-		max = right;
-	if (++count_compare && max != i) {
-		HoanVi(a[i], a[max]);
-		heapify_sort_compare(a, n, max, count_compare);
+	if (++count_compare && left < n && ++count_compare && a[left] > a[root]) {
+		root = left;
+	}
+	if (++count_compare && right < n && ++count_compare && a[right] > a[root]) {
+		root = right;
+	}
+	if (++count_compare && root != i) {
+		HoanVi(a[i], a[root]);
+		heapify_sort_compare(a, n, root, count_compare);
 	}
 }
 
 void heap_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
-	for (int i = (n - 1) / 2; ++count_compare && i >= 0; i--)
+	int i = (n - 1) / 2;
+	while (++count_compare && i >= 0) {
 		heapify_sort_compare(a, n, i, count_compare);
-	for (int i = n - 1; ++count_compare && i > 0; i--)
-	{
-		HoanVi(a[0], a[i]);
+		i -= 1;
+	}
+	int j = n - 1;
+	while (++count_compare && j >= 0) {
+		HoanVi(a[0], a[j]);
 		heapify_sort_compare(a, i, 0, count_compare);
+		j -= 1;
 	}
 }
 
@@ -557,35 +563,5 @@ void flash_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	}
 	delete[] l;
 	insertion_sort_compare(a, n, count_compare);
-}
-
-
-void Heapify_Comparison(int a[], int n, int i, unsigned __int64& count_comparison) {
-	int root = i;
-	int left = 2 * i + 1;
-	int right = 2 * i + 2;
-	if (++count_comparison && left < n && ++count_comparison && a[left] > a[root]) {
-		root = left;
-	}
-	if (++count_comparison && right < n && ++count_comparison && a[right] > a[root]) {
-		root = right;
-	}
-	if (++count_comparison && root != i) {
-		HoanVi(a[i], a[root]);
-		Heapify_Comparison(a, n, root, count_comparison);
-	}
-}
-void Heap_Sort_Comparison(int a[], int n, unsigned __int64& count_comparison) {
-	int i = (n - 1) / 2;
-	while (++count_comparison && i >= 0) {
-		Heapify_Comparison(a, n, i, count_comparison);
-		i -= 1;
-	}
-	int j = n - 1;
-	while (++count_comparison && j >= 0) {
-		HoanVi(a[0], a[j]);
-		Heapify_Comparison(a, i, 0, count_comparison);
-		j -= 1;
-	}
 }
 
