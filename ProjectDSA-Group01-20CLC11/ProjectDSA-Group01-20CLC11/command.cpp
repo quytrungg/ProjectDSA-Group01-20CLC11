@@ -61,7 +61,7 @@ void command_3(char* argv[], int algorithm, int size, int outmode) {
 		std::cout << "Input order: Randomize\n";
 		std::cout << "-------------------------\n";
 		GenerateData(a, n, 0);
-		outputFile("intput_1.txt", a, n);
+		outputFile("input_1.txt", a, n);
 		std::cout << "Running time (If required): " << runTime(algorithm, a, n) << "\n\n";
 		std::cout << "Input order: Nearly Sorted\n";
 		std::cout << "-------------------------\n";
@@ -86,7 +86,7 @@ void command_3(char* argv[], int algorithm, int size, int outmode) {
 		std::cout << "Input order: Randomize\n";
 		std::cout << "-------------------------\n";
 		GenerateData(a, n, 0);
-		outputFile("intput_1.txt", a, n);
+		outputFile("input_1.txt", a, n);
 		std::cout << "Comparisons (If required): " << compCount(algorithm, a, n) << "\n\n";
 		std::cout << "Input order: Nearly Sorted\n";
 		std::cout << "-------------------------\n";
@@ -237,8 +237,7 @@ void check_command(int argc, char* argv[], int& C, int& mode, int& algorithm1, i
 			C = 5;
 		}
 	}
-	if (filename == "")
-	{
+	if (filename == ""){
 		filename = "\0";
 	}
 }
