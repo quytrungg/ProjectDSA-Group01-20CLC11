@@ -90,36 +90,58 @@ void insertion_sort_compare(int* a, int n, unsigned long long & count_compare) {
 //4. Shaker sort
 void shaker_sort(int* a, int n) {
 	//a = new int[n];
-	int i, j, k;
-	for (i = 0; i < n;) {
-		for (j = i + 1; j < n; j++) {
-			if (a[j] < a[j - 1])
-				HoanVi(a[j], a[j - 1]);
+	int Left = 0;
+	int Right = n - 1;
+	int k = 0;
+	while ( Left < Right)
+	{
+		for (int i = Left; i < Right; i++)
+		{
+			if ( a[i] > a[i + 1])
+			{
+				HoanVi(a[i], a[i + 1]);
+				k = i;
+			}
 		}
-		n--;
-		for (k = n - 1; k > i; k--) {
-			if (a[k] < a[k - 1])
-				HoanVi(a[k], a[k - 1]);
+		Right = k;
+		for (int i = Right; i > Left; i--)
+		{
+			if ( a[i] < a[i - 1])
+			{
+				HoanVi(a[i], a[i - 1]);
+				k = i;
+			}
 		}
-		i++;
+		Left = k;
 	}
 }
 
 //Shaker sort with comparison
 void shaker_sort_compare(int* a, int n, unsigned long long & count_compare) {
 	//a = new int[n];
-	int i, j, k;
-	for (i = 0; ++count_compare && i < n;) {
-		for (j = i + 1; ++count_compare && j < n; j++) {
-			if (++count_compare&& a[j] < a[j - 1])
-				HoanVi(a[j], a[j - 1]);
+	int Left = 0;
+	int Right = n - 1;
+	int k = 0;
+	while (++count_compare && Left < Right)
+	{
+		for (int i = Left; ++count_compare && i < Right; i++)
+		{
+			if (++count_compare && a[i] > a[i + 1])
+			{
+				HoanVi(a[i], a[i + 1]);
+				k = i;
+			}
 		}
-		n--;
-		for (k = n - 1; ++count_compare && k > i; k--) {
-			if (++count_compare && a[k] < a[k - 1])
-				HoanVi(a[k], a[k - 1]);
+		Right = k;
+		for (int i = Right; ++count_compare && i > Left; i--)
+		{
+			if (++count_compare && a[i] < a[i - 1])
+			{
+				HoanVi(a[i], a[i - 1]);
+				k = i;
+			}
 		}
-		i++;
+		Left = k;
 	}
 }
 
@@ -169,7 +191,7 @@ void heapify_sort(int* a, int n, int i) {
 
 void heap_sort(int* a, int n) {
 	//a = new int[n];
-	for (int i = (n - 1) / 2; i >= 0; i--)
+	for (int i = n / 2 - 1; i >= 0; i--)
 		heapify_sort(a, n, i);
 	for (int i = n - 1; i > 0; i--)
 	{

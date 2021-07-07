@@ -13,16 +13,16 @@ void maintemp() {
 	//outputFile("input.txt", a, n);
 	clock_t start, end;
 	start = clock();
-	flash_sort(a, n);
+	shaker_sort(a, n);
 	end = clock();
 	outputFile("output.txt", a, n);
 	std::cout << "Time: " << end - start << " ms\n";
-	flash_sort_compare(b, n, count_compare);
+	shaker_sort_compare(b, n, count_compare);
 	std::cout << "Comparison: " << count_compare;
 }
 
 int main(int argc, char* argv[]) {
-	int C = 0, mode = 0, algorithm1 = 0, algorithm2 = 0, size = 0, order = 0, outmode = 0;
+	/*int C = 0, mode = 0, algorithm1 = 0, algorithm2 = 0, size = 0, order = 0, outmode = 0;
 	std::string filename;
 
 	check_command(argc, argv, C, mode, algorithm1, algorithm2, size, order, outmode, filename);
@@ -31,8 +31,8 @@ int main(int argc, char* argv[]) {
 	if (C == 2) { command_2(argv, algorithm1, size, order, outmode); }
 	if (C == 3) { command_3(argv, algorithm1, size, outmode); }
 	if (C == 4) { command_4(argv, algorithm1, algorithm2, filename); }
-	if (C == 5) { command_5(argv, algorithm1, algorithm2, size, order, filename); }
+	if (C == 5) { command_5(argv, algorithm1, algorithm2, size, order, filename); }*/
 
-	/*maintemp();*/
+	maintemp();
 	return 0;
 }
