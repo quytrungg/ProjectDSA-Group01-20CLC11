@@ -10,6 +10,28 @@
 #include <string> // because... reasons
 #include <cstring>
 
+//----------DEFINITION----------
+#define selectionsort 1
+#define insertionsort 2
+#define bubblesort 3
+#define shakersort 4
+#define shellsort 5
+#define heapsort 6
+#define mergesort 7
+#define quicksort 8
+#define countingsort 9
+#define radixsort 10
+#define flashsort 11
+
+#define random 0
+#define sorted 1
+#define reversed 2
+#define nearlysorted 3
+
+#define time 1
+#define comparison 2
+#define both 3
+
 //----------BUBBLE SORT----------
 void bubble_sort(int* a, int n);
 void bubble_sort_compare(int* a, int n, unsigned long long & count_compare);
@@ -85,8 +107,6 @@ int quickSortRuntime(int* a, int left, int right);
 int countingSortRuntime(int* a, int n);
 int radixSortRuntime(int* a, int n);
 int flashSortRuntime(int* a, int n); 
-
-//----------SWITCH CASE----------
 int runTime(int algorithm, int* a, int n);
 unsigned long long compCount(int algorithm, int* a, int n);
 

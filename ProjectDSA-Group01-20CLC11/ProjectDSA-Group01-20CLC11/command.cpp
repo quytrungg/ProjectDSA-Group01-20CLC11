@@ -172,68 +172,68 @@ void command_5(char* argv[], int algorithm1, int algorithm2, int size, int order
 
 //Check command
 void check_command(int argc, char* argv[], int& C, int& mode, int& algorithm1, int& algorithm2, int& size, int& order, int& outmode, std::string filename) {
-	if (strcmp(argv[2], "selection-sort") == 0) { algorithm1 = 1; }
-	else if (strcmp(argv[2], "insertion-sort") == 0) { algorithm2 = 2; }
-	else if (strcmp(argv[2], "bubble-sort") == 0) { algorithm2 = 3; }
-	else if (strcmp(argv[2], "shaker-sort") == 0) { algorithm2 = 4; }
-	else if (strcmp(argv[2], "shell-sort") == 0) { algorithm2 = 5; }
-	else if (strcmp(argv[2], "heap-sort") == 0) { algorithm2 = 6; }
-	else if (strcmp(argv[2], "merge-sort") == 0) { algorithm2 = 7; }
-	else if (strcmp(argv[2], "quick-sort") == 0) { algorithm2 = 8; }
-	else if (strcmp(argv[2], "counting-sort") == 0) { algorithm2 = 9; }
-	else if (strcmp(argv[2], "radix-sort") == 0) { algorithm2 = 10; }
-	else if (strcmp(argv[2], "flash-sort") == 0) { algorithm2 = 11; }
-	if (strcmp(argv[1], "-a") == 0) {
-		mode = 1;
+	if (strcmp(argv[1], "-a") == 0) { mode = 1; }
+	else if (strcmp(argv[1], "-c") == 0) { mode = 2; }
+	if (strcmp(argv[2], "selection-sort") == 0) { algorithm1 = selectionsort; }
+	else if (strcmp(argv[2], "insertion-sort") == 0) { algorithm2 = insertionsort; }
+	else if (strcmp(argv[2], "bubble-sort") == 0) { algorithm2 = bubblesort; }
+	else if (strcmp(argv[2], "shaker-sort") == 0) { algorithm2 = shakersort; }
+	else if (strcmp(argv[2], "shell-sort") == 0) { algorithm2 = shellsort; }
+	else if (strcmp(argv[2], "heap-sort") == 0) { algorithm2 = heapsort; }
+	else if (strcmp(argv[2], "merge-sort") == 0) { algorithm2 = mergesort; }
+	else if (strcmp(argv[2], "quick-sort") == 0) { algorithm2 = quicksort; }
+	else if (strcmp(argv[2], "counting-sort") == 0) { algorithm2 = countingsort; }
+	else if (strcmp(argv[2], "radix-sort") == 0) { algorithm2 = radixsort; }
+	else if (strcmp(argv[2], "flash-sort") == 0) { algorithm2 = flashsort; }
+	if (mode == 1){
 		if (argc == 6) {
 			size = atoi(argv[3]);
-			if (strcmp(argv[4], "-rand") == 0) { order = 0; }
-			else if (strcmp(argv[4], "-sorted") == 0) { order = 1; }
-			else if (strcmp(argv[4], "-rev") == 0) { order = 2; }
-			else if (strcmp(argv[4], "-nsorted") == 0) { order = 3; }
-			else if (strcmp(argv[5], "-time") == 0) { outmode = 1; }
-			else if (strcmp(argv[5], "-comp") == 0) { outmode = 2; }
-			else if (strcmp(argv[5], "-both") == 0) { outmode = 3; }
+			if (strcmp(argv[4], "-rand") == 0) { order = random; }
+			else if (strcmp(argv[4], "-sorted") == 0) { order = sorted; }
+			else if (strcmp(argv[4], "-rev") == 0) { order = reversed; }
+			else if (strcmp(argv[4], "-nsorted") == 0) { order = nearlysorted; }
+			else if (strcmp(argv[5], "-time") == 0) { outmode = time; }
+			else if (strcmp(argv[5], "-comp") == 0) { outmode = comparison; }
+			else if (strcmp(argv[5], "-both") == 0) { outmode = both; }
 			C = 2;
 		}
 		else if (check_number(argv[3])) {
 			size = atoi(argv[3]);
-			if (strcmp(argv[4], "-time") == 0) { outmode = 1; }
-			else if (strcmp(argv[4], "-comp") == 0) { outmode = 2; }
-			else if (strcmp(argv[4], "-both") == 0) { outmode = 3; }
+			if (strcmp(argv[4], "-time") == 0) { outmode = time; }
+			else if (strcmp(argv[4], "-comp") == 0) { outmode = comparison; }
+			else if (strcmp(argv[4], "-both") == 0) { outmode = both; }
 			C = 3;
 		}
 		else {
 			filename = argv[3];
-			if (strcmp(argv[4], "-time") == 0) { outmode = 1; }
-			else if (strcmp(argv[4], "-comp") == 0) { outmode = 2; }
-			else if (strcmp(argv[4], "-both") == 0) { outmode = 3; }
+			if (strcmp(argv[4], "-time") == 0) { outmode = time; }
+			else if (strcmp(argv[4], "-comp") == 0) { outmode = comparison; }
+			else if (strcmp(argv[4], "-both") == 0) { outmode = both; }
 			C = 1;
 		}
 	}
-	else if (strcmp(argv[1], "-c") == 0) {
-		mode = 2;
-		if (strcmp(argv[3], "selection-sort") == 0) { algorithm2 = 1; }
-		else if (strcmp(argv[3], "insertion-sort") == 0) { algorithm2 = 2; }
-		else if (strcmp(argv[3], "bubble-sort") == 0) { algorithm2 = 3; }
-		else if (strcmp(argv[3], "shaker-sort") == 0) { algorithm2 = 4; }
-		else if (strcmp(argv[3], "shell-sort") == 0) { algorithm2 = 5; }
-		else if (strcmp(argv[3], "heap-sort") == 0) { algorithm2 = 6; }
-		else if (strcmp(argv[3], "merge-sort") == 0) { algorithm2 = 7; }
-		else if (strcmp(argv[3], "quick-sort") == 0) { algorithm2 = 8; }
-		else if (strcmp(argv[3], "counting-sort") == 0) { algorithm2 = 9; }
-		else if (strcmp(argv[3], "radix-sort") == 0) { algorithm2 = 10; }
-		else if (strcmp(argv[3], "flash-sort") == 0) { algorithm2 = 11; }
+	else if(mode == 2){
+		if (strcmp(argv[3], "selection-sort") == 0) { algorithm2 = selectionsort; }
+		else if (strcmp(argv[3], "insertion-sort") == 0) { algorithm2 = insertionsort; }
+		else if (strcmp(argv[3], "bubble-sort") == 0) { algorithm2 = bubblesort; }
+		else if (strcmp(argv[3], "shaker-sort") == 0) { algorithm2 = shakersort; }
+		else if (strcmp(argv[3], "shell-sort") == 0) { algorithm2 = shellsort; }
+		else if (strcmp(argv[3], "heap-sort") == 0) { algorithm2 = heapsort; }
+		else if (strcmp(argv[3], "merge-sort") == 0) { algorithm2 = mergesort; }
+		else if (strcmp(argv[3], "quick-sort") == 0) { algorithm2 = quicksort; }
+		else if (strcmp(argv[3], "counting-sort") == 0) { algorithm2 = countingsort; }
+		else if (strcmp(argv[3], "radix-sort") == 0) { algorithm2 = radixsort; }
+		else if (strcmp(argv[3], "flash-sort") == 0) { algorithm2 = flashsort; }
 		if (argc == 5) {
 			filename = argv[4];
 			C = 4;
 		}
 		else {
 			size = atoi(argv[4]);
-			if (strcmp(argv[5], "-rand") == 0) { order = 0; }
-			else if (strcmp(argv[5], "-sorted") == 0) { order = 1; }
-			else if (strcmp(argv[5], "-rev") == 0) { order = 2; }
-			else if (strcmp(argv[5], "-nsorted") == 0) { order = 3; }
+			if (strcmp(argv[5], "-rand") == 0) { order = random; }
+			else if (strcmp(argv[5], "-sorted") == 0) { order = sorted; }
+			else if (strcmp(argv[5], "-rev") == 0) { order = reversed; }
+			else if (strcmp(argv[5], "-nsorted") == 0) { order = nearlysorted; }
 			C = 5;
 		}
 	}
